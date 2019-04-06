@@ -95,7 +95,13 @@ response = server.ship do |shipment_builder|
     postal_code: 'WC2H 8AG',
     country: 'GB'
   shipment_builder.add_package weight: '0.5',
-    unit: 'KGS'
+    unit: 'KGS',
+    dimensions: {
+      :length => 13,
+      :width => 11,
+      :height => 2,
+      :unit => "IN"
+    }
   shipment_builder.add_description 'White coffee mug'
   shipment_builder.add_payment_information 'ACCOUNT_NUMBER'
   shipment_builder.add_service '65' # returned in rates response
@@ -155,7 +161,7 @@ response = server.ship do |shipment_builder|
     postal_code: '94107',
     country: 'US'
   shipment_builder.add_package weight: '0.5',
-    unit: 'KGS'
+    unit: 'KGS',
     dimensions: {
       :length => 13,
       :width => 11,
