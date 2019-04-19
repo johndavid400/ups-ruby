@@ -216,10 +216,18 @@ module UPS
       def package_service_options(service_options)
         Element.new('PackageServiceOptions').tap do |options|
           service_options.each do |key,values|
-            values.each do |opt_key, opt_val|
-              if opt_val.present?
-                options << Element.new(key).tap do |option|
-                  option << element_with_value(opt_key, opt_val)
+            if values.select{|k,v| v.present? }.present?
+              options << Element.new(key).tap do |option|
+                values.each do |opt_key, opt_val|
+                  if opt_val.present?
+                    if opt_val.is_a?(Hash)
+                      option << Element.new(opt_key).tap do |option_values|
+                        option_values << element_with_value(opt_val.keys[0], opt_val.values[0])
+                      end
+                    else
+                      option << element_with_value(opt_key, opt_val)
+                    end
+                  end
                 end
               end
             end
