@@ -148,6 +148,7 @@ module UPS
           org << element_with_value('Description', 'Rate')
           org << package_weight(opts[:weight], opts[:unit])
           org << package_dimensions(opts[:dimensions]) if opts[:dimensions]
+          org << package_service_options(opts[:service_options]) if opts[:service_options]
         end
       end
 
@@ -209,6 +210,20 @@ module UPS
           org << element_with_value('Length', dimensions[:length].to_s[0..8])
           org << element_with_value('Width', dimensions[:width].to_s[0..8])
           org << element_with_value('Height', dimensions[:height].to_s[0..8])
+        end
+      end
+
+      def package_service_options(service_options)
+        Element.new('PackageServiceOptions').tap do |options|
+          service_options.each do |key,values|
+            values.each do |opt_key, opt_val|
+              if opt_val.present?
+                options << Element.new(key).tap do |option|
+                  option << element_with_value(opt_key, opt_val)
+                end
+              end
+            end
+          end
         end
       end
 
