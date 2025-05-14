@@ -8,3 +8,5 @@ group :development, :test do
   gem 'minitest'
   gem 'nokogiri'
 end
+
+gem 'levenshtein-ffi', github: "johndavid400/levenshtein-ffi"
