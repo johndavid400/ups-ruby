@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/johndavid400/levenshtein-ffi.git
-  revision: 06842da211fdf03674fcff0ede715d20b98bfa5d
+  revision: 041df558912aeed6299a13cf29e03aa0f7d266de
   specs:
     levenshtein-ffi (1.1.0)
       ffi (~> 1.9)
@@ -78,4 +78,4 @@ DEPENDENCIES
   ups-ruby!
 
 BUNDLED WITH
-   2.6.2
+   2.4.19
